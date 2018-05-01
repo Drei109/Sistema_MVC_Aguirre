@@ -1,0 +1,46 @@
+﻿@model List<Sistema_MVC_Aguirre.Models.Usuario>
+@{
+    ViewBag.Title = "USUARIO";
+}
+
+<h4><a href="~/Usuario/AgregarEditar/" class="btn btn-primary btn-lg">NUEVO USUARIO</a></h4>
+
+@using (Html.BeginForm("Index", "Usuario", FormMethod.Post, new { criterio = "frm-buscar" }))
+{
+    <div class="">
+        @Html.Label("Buscar: ", new { @class = "h4" })
+        @Html.TextBox("Criterio", "", new { @class = "form-control input-lg" })
+        <br />
+        <button type="submit" class="btn btn-lg btn-primary">BUSCAR</button>
+    </div>
+    <br />
+    <table class="table table-striped">
+        <thead class="thead-dark h4">
+            <tr>
+                <th>ID</th>
+                <th>USUARIO</th>
+                <th>NIVEL</th>
+                <th>ESTADO</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="h4">
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.usuario_id</td>
+                    <td>@m.usuario1</td>
+                    <td>@m.nivel</td>
+                    <td>@(m.estado == "A" ? "Activo" : "Inactivo")</td>
+                    <td style="align-content:center;">
+                        <a href="~/Usuario/Ver/@m.usuario_id" class="btn btn-lg btn-info">DETALLE</a>
+                        <a href="~/Usuario/AgregarEditar/@m.usuario_id" class="btn btn-lg btn-warning">MODIFICAR</a>
+                        <a href="~/Usuario/Eliminar/@m.usuario_id" class="btn btn-lg btn-danger" onclick="return confirm('¿Está seguro que desa eliminar este registro')">ELIMINAR</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

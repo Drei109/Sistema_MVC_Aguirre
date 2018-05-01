@@ -1,0 +1,33 @@
+﻿@model Sistema_MVC_Aguirre.Models.Persona
+@{
+    ViewBag.Title = "PERSONA - DETALLE";
+}
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Persona/Index">PERSONA</a></li>
+    <li class="active">@Model.nombre</li>
+</ol>
+
+<div class="panel panel_default h4">
+    <div class="panel-heading">
+        Información de la categoría
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.persona_id</dd>
+            <dt>DNI</dt>
+            <dd>@Model.dni</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.nombre</dd>
+            <dt>APELLIDO</dt>
+            <dd>@Model.apellido</dd>
+            <dt>E-MAIL</dt>
+            <dd>@Model.email</dd>
+            <dt>CELULAR</dt>
+            <dd>@Model.celular</dd>
+            <dt>ESTADO</dt>
+            <dd>@(Model.estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>

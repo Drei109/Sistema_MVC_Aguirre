@@ -1,0 +1,25 @@
+﻿@model Sistema_MVC_Aguirre.Models.Usuario
+@{
+    ViewBag.Title = "USUARIO - DETALLE";
+}
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Categoria/Index">USUARIO</a></li>
+    <li class="active">@Model.usuario1</li>
+</ol>
+
+<div class="panel panel_default h4">
+    <div class="panel-heading">
+        Información del usuario
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.usuario_id</dd>
+            <dt>NIVEL</dt>
+            <dd>@Model.nivel</dd>
+            <dt>ESTADO</dt>
+            <dd>@(Model.estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>

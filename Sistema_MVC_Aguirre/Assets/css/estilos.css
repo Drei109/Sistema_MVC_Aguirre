@@ -1,0 +1,27 @@
+﻿.asiento-ocupado {
+    background-color: #ff4d4d;
+}
+
+.asiento-disponible {
+    background-color: #ffffff;
+}
+
+.asiento-reservado {
+    background-color: #5da544;
+}
+
+.not-bold{
+    font-weight:normal !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.no-margin{
+    margin-top:0;
+}
+
+.t-h5 {
+    font-size: 14px;    
+}

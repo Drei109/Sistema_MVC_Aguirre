@@ -1,0 +1,31 @@
+﻿@model Sistema_MVC_Aguirre.Models.Galeria
+@{
+    ViewBag.Title = "GALERÍA - DETALLE";
+}
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Galeria/Index">GALERÍA</a></li>
+    <li class="active">@Model.nombre</li>
+</ol>
+
+<div class="panel panel_default h4">
+    <div class="panel-heading">
+        Información de la galería
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.galeria_id</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.nombre</dd>
+            <dt>DESCRIPCIÓN</dt>
+            <dd>@Model.descripcion</dd>
+            <dt>IMAGEN</dt>
+            <dd>@Model.imagen</dd>
+            <dt>THUMBNAIL</dt>
+            <dd>@Model.thumbail</dd>
+            <dt>ESTADO</dt>
+            <dd>@(Model.estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>

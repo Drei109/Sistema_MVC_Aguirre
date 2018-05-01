@@ -1,0 +1,56 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />    
+    <link href="~/Assets/css/bootstrap4-hello-world.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/estilos.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto:300,400" rel="stylesheet">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>   
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav mr-auto mt-2 mt-md-0">                        
+                        <li><a class="navbar-brand t-h5" href="#">SISTEMA MVC</a></li>
+                        <li class="nav-item dropdown t-h5">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                MANTENIMIENTO
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item t-h5" href="~/Categoria/Index">Categoría</a>
+                                <a class="dropdown-item t-h5" href="~/Documento/Index">Documento</a>
+                                <a class="dropdown-item t-h5" href="~/Galeria/Index">Galería</a>                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item t-h5" href="~/Persona/Index">Persona</a>
+                                <a class="dropdown-item t-h5" href="~/Usuario/Index">Usuario</a>
+                            </div>
+                        </li>
+                        @*<li class="nav-item t-h5"><a class="nav-link" href="~/Asistencia/Index">Ejercicio 1</a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br />
+        <div class="container body-content">
+            <div class="jumbotron">
+                <h2 class="display-4"><b>@ViewBag.Title</b></h2>
+                <hr />
+                @RenderBody()    
+            </div>
+            <hr />
+            <footer>
+                <h5>&copy; @DateTime.Now.Year - Aguirre </h5>
+            </footer>
+            
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="~/Assets/js/bootstrap.min.js"></script>        
+    </div>
+</body>
+</html>
