@@ -12,6 +12,7 @@ namespace Sistema_MVC_Aguirre.Controllers
     {
 
         private Usuario usuario = new Usuario();
+        private Persona persona = new Persona();
 
         // GET: Usuario
         public ActionResult Index(string criterio)
@@ -41,7 +42,9 @@ namespace Sistema_MVC_Aguirre.Controllers
 
         public ActionResult AgregarEditar(int id = 0)
         {
+            ViewBag.Persona = persona.Listar();
             return View(
+                
                     id == 0 ? new Usuario() : usuario.Obtener(id)
                 );
         }

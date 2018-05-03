@@ -19,6 +19,7 @@
             <tr>
                 <th>ID</th>
                 <th>USUARIO</th>
+                <th>NOMBRE</th>
                 <th>NIVEL</th>
                 <th>ESTADO</th>
                 <th></th>
@@ -30,6 +31,7 @@
                 <tr>
                     <td>@m.usuario_id</td>
                     <td>@m.usuario1</td>
+                    <td>@(m.Persona.nombre + " " + m.Persona.apellido)</td>
                     <td>@m.nivel</td>
                     <td>@(m.estado == "A" ? "Activo" : "Inactivo")</td>
                     <td style="align-content:center;">

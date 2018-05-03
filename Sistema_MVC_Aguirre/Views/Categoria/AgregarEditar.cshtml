@@ -1,0 +1,53 @@
+﻿@model Sistema_MVC_Aguirre.Models.Categoria
+@{ 
+    ViewBag.Title = (Model.categoria_id)>0 ? Model.nombre : "Nuevo registro" ;
+}
+
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Categoria">Categoría</a></li>
+    <li class="active">@((Model.categoria_id)>0 ? Model.nombre : "Nuevo registro")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Categoria", FormMethod.Post, new { id = "frm-categoria" }))
+{
+    @Html.HiddenFor(x => x.categoria_id)
+    <div class="card">
+        <div class="card-header"><span class="h4">Información de la categoría</span></div>
+        <div class="card-body h4">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.categoria_id, new { @class = "form-control form-control-lg", disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Categoría")
+                @Html.TextBoxFor(x => x.nombre, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "label label-danger"})
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Descripción")
+                @Html.TextBoxFor(x => x.descripcion, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.descripcion, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado ")
+                <select name="estado" class="custom-select form-control-lg">
+                    <option @(Model.estado == "" ? "Selected": "") value = "">Seleccione</option>
+                    <option @(Model.estado == "A" ? "Selected" : "") value="A" class="">Activo</option>
+                    <option @(Model.estado == "I" ? "Selected" : "") value="I" class="">Inactivo</option>
+                </select>                
+                @Html.ValidationMessageFor(x => x.estado, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-lg">GRABAR</button>
+            <a href="~/Categoria" class="btn btn-danger btn-lg">CANCELAR</a>
+        </div>
+        <br />
+
+    </div>
+}

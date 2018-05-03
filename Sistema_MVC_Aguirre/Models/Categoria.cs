@@ -27,6 +27,7 @@ namespace Sistema_MVC_Aguirre.Models
         [StringLength(250)]
         public string nombre { get; set; }
 
+        [Required]
         [Column(TypeName = "text")]
         public string descripcion { get; set; }
 

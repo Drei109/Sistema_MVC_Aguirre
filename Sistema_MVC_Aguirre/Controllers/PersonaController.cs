@@ -17,6 +17,9 @@ namespace Sistema_MVC_Aguirre.Controllers
         {
             if (criterio == null || criterio == "")
             {
+                //Persona p = new Persona();
+                //ViewBag.Persona = p.Listar();
+
                 return View(persona.Listar());
 
             }

@@ -1,0 +1,77 @@
+﻿@model Sistema_MVC_Aguirre.Models.Usuario
+@{
+    ViewBag.Title = (Model.usuario_id) > 0 ? Model.usuario1 : "Nuevo registro";
+    List<Sistema_MVC_Aguirre.Models.Persona> persona = (List<Sistema_MVC_Aguirre.Models.Persona>) ViewBag.Persona;
+}
+
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Usuario">Usuario</a></li>
+    <li class="active">@((Model.usuario_id) > 0 ? Model.usuario1 : "Nuevo registro")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Usuario", FormMethod.Post, new { id = "frm-categoria" }))
+{
+    @Html.HiddenFor(x => x.usuario_id)
+    <div class="card">
+        <div class="card-header"><span class="h4">Información del Usuario</span></div>
+        <div class="card-body h4">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.usuario_id, new { @class = "form-control form-control-lg", disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Persona ")
+                <select name="persona_id" class="custom-select form-control-lg">
+                    <option @(Model.persona_id.Equals("") ? "Selected" : "") value="">Seleccione</option>
+                    @foreach (var p in persona)
+                    {
+                        <option @(Model.persona_id.Equals(p.persona_id) ? "Selected" : "") value="@p.persona_id" class="">@(p.nombre + " " + p.apellido)</option>
+                    }                    
+                </select>
+                @Html.ValidationMessageFor(x => x.persona_id, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Usuario ")
+                @Html.TextBoxFor(x => x.usuario1, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.usuario1, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Clave ")
+                @Html.TextBoxFor(x => x.clave, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.clave, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nivel  ")
+                <select name="nivel" class="custom-select form-control-lg">
+                    <option @(Model.nivel == "" ? "Selected" : "") value="">Seleccione</option>
+                    <option @(Model.nivel == "Administrador" ? "Selected" : "") value="Administrador" class="">Administrador</option>
+                    <option @(Model.nivel == "Supervisor" ? "Selected" : "") value="Supervisor" class="">Supervisor</option>
+                    <option @(Model.nivel == "Usuario" ? "Selected" : "") value="Usuario" class="">Usuario</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.nivel, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado ")
+                <select name="estado" class="custom-select form-control-lg">
+                    <option @(Model.estado == "" ? "Selected" : "") value="">Seleccione</option>
+                    <option @(Model.estado == "A" ? "Selected" : "") value="A" class="">Activo</option>
+                    <option @(Model.estado == "I" ? "Selected" : "") value="I" class="">Inactivo</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.estado, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-lg">GRABAR</button>
+            <a href="~/Usuario" class="btn btn-danger btn-lg">CANCELAR</a>
+        </div>
+        <br />
+
+    </div>
+}

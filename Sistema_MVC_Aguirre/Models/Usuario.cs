@@ -41,14 +41,14 @@ namespace Sistema_MVC_Aguirre.Models
         // METHODS
         public List<Usuario> Listar()
         {
-            var usuarios = new List<Usuario>();
+            var usuarios = new List<Usuario>();            
 
             try
             {
                 //DB connection
                 using (var db = new Model_Sistema())
                 {
-                    usuarios = db.Usuario.ToList();
+                    usuarios = db.Usuario.Include("Persona").ToList();
                 }
             }
             catch (Exception)
@@ -66,7 +66,7 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 using (var db = new Model_Sistema())
                 {
-                    usuarios = db.Usuario.Where(x => x.usuario_id == id).SingleOrDefault();
+                    usuarios = db.Usuario.Include("Persona").Where(x => x.usuario_id == id).SingleOrDefault();
                 }
             }
             catch (Exception ex)
@@ -80,11 +80,25 @@ namespace Sistema_MVC_Aguirre.Models
         public List<Usuario> Buscar(string criterio)
         {
             var usuario = new List<Usuario>();
+            string estadousu = "";
+            switch (criterio)
+            {
+                case "Activo":
+                    estadousu = "A";
+                    break;
+                case "Inactivo":
+                    estadousu = "I";
+                    break;
+            }
+
             try
             {
                 using (var db = new Model_Sistema())
                 {
-                    usuario = db.Usuario.Where(x => x.usuario1.Contains(criterio)).ToList();
+                    usuario = db.Usuario.Include("Persona").Where(x => x.usuario1.Contains(criterio) 
+                              || x.Persona.apellido.Contains(criterio)
+                              || x.estado == estadousu)
+                              .ToList();
                 }
             }
             catch (Exception)
