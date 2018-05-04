@@ -39,6 +39,7 @@ namespace Sistema_MVC_Aguirre.Controllers
 
         public ActionResult AgregarEditar(int id = 0)
         {
+            
             return View(
                     id == 0 ? new Categoria() : categoria.Obtener(id)
                 );

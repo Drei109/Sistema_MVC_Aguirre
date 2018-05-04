@@ -46,7 +46,7 @@ namespace Sistema_MVC_Aguirre.Models
                 //DB connection
                 using (var db = new Model_Sistema())
                 {
-                    galerias = db.Galeria.ToList();
+                    galerias = db.Galeria.Include("Categoria").ToList();
                 }
             }
             catch (Exception)
@@ -64,7 +64,7 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 using (var db = new Model_Sistema())
                 {
-                    galerias = db.Galeria.Where(x => x.galeria_id == id).SingleOrDefault();
+                    galerias = db.Galeria.Include("Categoria").Where(x => x.galeria_id == id).SingleOrDefault();
                 }
             }
             catch (Exception ex)
@@ -82,7 +82,7 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 using (var db = new Model_Sistema())
                 {
-                    galerias = db.Galeria.Where(x => x.nombre.Contains(criterio) || x.descripcion.Contains(criterio)).ToList();
+                    galerias = db.Galeria.Include("Categoria").Where(x => x.nombre.Contains(criterio) || x.descripcion.Contains(criterio)).ToList();
                 }
             }
             catch (Exception)

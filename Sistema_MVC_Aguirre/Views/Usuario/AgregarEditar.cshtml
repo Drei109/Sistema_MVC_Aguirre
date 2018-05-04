@@ -58,11 +58,9 @@
 
             <div class="form-group">
                 @Html.Label("Estado ")
-                <select name="estado" class="custom-select form-control-lg">
-                    <option @(Model.estado == "" ? "Selected" : "") value="">Seleccione</option>
-                    <option @(Model.estado == "A" ? "Selected" : "") value="A" class="">Activo</option>
-                    <option @(Model.estado == "I" ? "Selected" : "") value="I" class="">Inactivo</option>
-                </select>
+                <br />
+                @Html.RadioButtonFor(x => x.estado, "A")<span> Activo</span>
+                @Html.RadioButtonFor(x => x.estado, "I")<span> Inactivo</span>
                 @Html.ValidationMessageFor(x => x.estado, null, new { @class = "label label-danger" })
             </div>
 

@@ -50,7 +50,7 @@ namespace Sistema_MVC_Aguirre.Models
                 //DB connection
                 using (var db = new Model_Sistema())
                 {
-                    documentos = db.Documento.ToList();
+                    documentos = db.Documento.Include("Categoria").ToList();
                 }
             }
             catch (Exception)
@@ -68,7 +68,7 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 using (var db = new Model_Sistema())
                 {
-                    documentos = db.Documento.Where(x => x.documento_id == id).SingleOrDefault();
+                    documentos = db.Documento.Include("Categoria").Where(x => x.documento_id == id).SingleOrDefault();
                 }
             }
             catch (Exception ex)
@@ -86,7 +86,7 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 using (var db = new Model_Sistema())
                 {
-                    documentos = db.Documento.Where(x => x.nombre.Contains(criterio) || x.descripcion.Contains(criterio)).ToList();
+                    documentos = db.Documento.Include("Categoria").Where(x => x.nombre.Contains(criterio) || x.descripcion.Contains(criterio)).ToList();
                 }
             }
             catch (Exception)

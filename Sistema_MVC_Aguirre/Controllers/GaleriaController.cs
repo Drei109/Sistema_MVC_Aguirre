@@ -11,6 +11,7 @@ namespace Sistema_MVC_Aguirre.Controllers
     public class GaleriaController : Controller
     {
         private Galeria galeria = new Galeria();
+        private Categoria categoria = new Categoria();
 
         // GET: Galeria
         public ActionResult Index(string criterio)
@@ -38,15 +39,20 @@ namespace Sistema_MVC_Aguirre.Controllers
                 );
         }
 
+        
         public ActionResult AgregarEditar(int id = 0)
         {
+            ViewBag.Categoria2 = categoria.Listar();
             return View(
                     id == 0 ? new Galeria() : galeria.Obtener(id)
                 );
         }
 
+        [HttpPost]
         public ActionResult Guardar(Galeria galeria)
         {
+            ViewBag.Categoria2 = categoria.Listar();
+            
             if (ModelState.IsValid)
             {
                 galeria.Guardar();

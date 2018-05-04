@@ -10,6 +10,7 @@ namespace Sistema_MVC_Aguirre.Controllers
     public class DocumentoController : Controller
     {
         private Documento documento = new Documento();
+        private Categoria categoria = new Categoria();
 
         // GET: Documento
         public ActionResult Index(string criterio)
@@ -39,13 +40,16 @@ namespace Sistema_MVC_Aguirre.Controllers
 
         public ActionResult AgregarEditar(int id = 0)
         {
+            ViewBag.Categoria = categoria.Listar();
             return View(
                     id == 0 ? new Documento() : documento.Obtener(id)
                 );
         }
 
+        [HttpPost]
         public ActionResult Guardar(Documento documento)
         {
+            
             if (ModelState.IsValid)
             {
                 documento.Guardar();
@@ -55,7 +59,6 @@ namespace Sistema_MVC_Aguirre.Controllers
             {
                 return View("~/Views/Documento/AgregarEditar.cshtml", documento);
             }
-
         }
 
         public ActionResult Eliminar(int id)

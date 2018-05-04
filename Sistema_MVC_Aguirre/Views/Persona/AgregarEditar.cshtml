@@ -1,0 +1,69 @@
+﻿@model Sistema_MVC_Aguirre.Models.Persona
+@{
+    ViewBag.Title = (Model.persona_id) > 0 ? Model.nombre : "Nuevo registro";
+}
+
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Persona">Persona</a></li>
+    <li class="active">@((Model.persona_id) > 0 ? Model.nombre : "Nuevo registro")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Persona", FormMethod.Post, new { id = "frm-persona" }))
+{
+    @Html.HiddenFor(x => x.persona_id)
+    <div class="card">
+        <div class="card-header"><span class="h4">Información de la categoría</span></div>
+        <div class="card-body h4">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.persona_id, new { @class = "form-control form-control-lg", disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("DNI")
+                @Html.TextBoxFor(x => x.dni, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.dni, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Apellido ")
+                @Html.TextBoxFor(x => x.apellido, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.apellido, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nombre ")
+                @Html.TextBoxFor(x => x.nombre, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Email ")
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.email, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Celular ")
+                @Html.TextBoxFor(x => x.celular, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.celular, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado ")
+                <br />
+                @Html.RadioButtonFor(x => x.estado, "A")<span> Activo</span>
+                @Html.RadioButtonFor(x => x.estado, "I")<span> Inactivo</span>
+                @Html.ValidationMessageFor(x => x.estado, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-lg">GRABAR</button>
+            <a href="~/Persona" class="btn btn-danger btn-lg">CANCELAR</a>
+        </div>
+        <br />
+
+    </div>
+}

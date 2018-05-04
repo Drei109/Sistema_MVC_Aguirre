@@ -146,6 +146,9 @@
     <Content Include="Views\Galeria\Ver.cshtml" />
     <Content Include="Views\Categoria\AgregarEditar.cshtml" />
     <Content Include="Views\Usuario\AgregarEditar.cshtml" />
+    <Content Include="Views\Documento\AgregarEditar.cshtml" />
+    <Content Include="Views\Galeria\AgregarEditar.cshtml" />
+    <Content Include="Views\Persona\AgregarEditar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

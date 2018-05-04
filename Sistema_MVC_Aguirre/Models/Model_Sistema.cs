@@ -9,7 +9,7 @@ namespace Sistema_MVC_Aguirre.Models
     public partial class Model_Sistema : DbContext
     {
         public Model_Sistema()
-            : base("name=Model_Sistema")
+            : base("name=Model_Sistema2")
         {
         }
 

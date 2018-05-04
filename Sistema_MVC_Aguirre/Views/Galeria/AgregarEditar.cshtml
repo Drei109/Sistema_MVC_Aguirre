@@ -1,0 +1,77 @@
+﻿@model Sistema_MVC_Aguirre.Models.Galeria
+@{
+    ViewBag.Title = (Model.galeria_id) > 0 ? Model.nombre : "Nuevo registro";
+    List<Sistema_MVC_Aguirre.Models.Categoria> categoria2 = ViewBag.Categoria2;
+}
+
+
+<ol class="breadcrumb h4">
+    <li><a href="~/Galeria">Galería</a></li>
+    <li class="active">@((Model.galeria_id) > 0 ? Model.nombre : "Nuevo registro")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Galeria", FormMethod.Post, new { id = "frm-galeria" }))
+{
+    @Html.HiddenFor(x => x.galeria_id)
+    <div class="card">
+        <div class="card-header"><span class="h4">Información de la galería</span></div>
+        <div class="card-body h4">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.galeria_id, new { @class = "form-control form-control-lg", disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Categoria")
+                <select name="categoria_id" class="custom-select form-control-lg">
+                    <option @(Model.categoria_id.Equals("") ? "Selected" : "") value="">Seleccione</option>
+                     @foreach (var c in categoria2)
+                     {
+                       <option @(Model.categoria_id.Equals(c.categoria_id) ? "Selected" : "") value="@c.categoria_id" class="">@c.nombre</option>
+                     }
+                </select>
+                @Html.ValidationMessageFor(x => x.categoria_id, null, new { @class = "label label-danger" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Nombre ")
+                @Html.TextBoxFor(x => x.nombre, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Descripción ")
+                @Html.TextBoxFor(x => x.descripcion, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.descripcion, null, new { @class = "label label-danger" })
+            </div>  
+            
+            <div class="form-group">
+                @Html.Label("Imagen ")
+                @Html.TextBoxFor(x => x.imagen, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.imagen, null, new { @class = "label label-danger" })
+            </div>  
+            
+            <div class="form-group">
+                @Html.Label("Thumpnail ")
+                @Html.TextBoxFor(x => x.thumbail, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(x => x.thumbail, null, new { @class = "label label-danger" })
+            </div> 
+
+            <div class="form-group">
+                @Html.Label("Estado ")
+                <br />
+                @Html.RadioButtonFor(x => x.estado, "A")<span> Activo</span>
+                @Html.RadioButtonFor(x => x.estado, "I")<span> Inactivo</span>
+                @Html.ValidationMessageFor(x => x.estado, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-lg">GRABAR</button>
+            <a href="~/Galeria" class="btn btn-danger btn-lg">CANCELAR</a>
+        </div>
+        <br />
+
+    </div>
+}
