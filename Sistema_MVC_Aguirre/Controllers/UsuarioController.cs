@@ -51,6 +51,7 @@ namespace Sistema_MVC_Aguirre.Controllers
 
         public ActionResult Guardar(Usuario usuario)
         {
+            ViewBag.Persona = persona.Listar();
             if (ModelState.IsValid)
             {
                 usuario.Guardar();

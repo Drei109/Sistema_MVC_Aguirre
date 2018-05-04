@@ -4,10 +4,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap -->
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />    
     <link href="~/Assets/css/bootstrap4-hello-world.min.css" rel="stylesheet" />
-    <link href="~/Assets/css/estilos.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto:300,400" rel="stylesheet">
+    <!-- Custom -->
+    <link href="~/Assets/css/estilos.css" rel="stylesheet" />
+    <!-- DataTable -->
+    <link href="~/Assets/DataTables/datatables.min.css" rel="stylesheet" />
+    
+    <link href="~/Assets/DataTables/css/dataTables.foundation.min.css" rel="stylesheet" />        
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -29,8 +35,7 @@
                                 <a class="dropdown-item t-h5" href="~/Persona/Index">Persona</a>
                                 <a class="dropdown-item t-h5" href="~/Usuario/Index">Usuario</a>
                             </div>
-                        </li>
-                        @*<li class="nav-item t-h5"><a class="nav-link" href="~/Asistencia/Index">Ejercicio 1</a></li>*@
+                        </li>                        
                     </ul>
                 </div>
             </div>
@@ -51,6 +56,56 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="~/Assets/js/bootstrap.min.js"></script>        
+        <script src="~/Assets/DataTables/datatables.min.js"></script>     
+        <script>
+            $(document).ready(function () {
+                $("#datatable").DataTable({
+
+                    "aLengthMenu": [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "Todos"]],
+                    "bDestroy": true,
+                    "language": {
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+
+                $('#ejemplo2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
+                });
+
+                $('#vertical').DataTable({
+                    "scrollY": "200px",
+                    "scrollCollapse": true,
+                    "paging": false
+                });
+            });
+        </script>
     </div>
 </body>
 </html>

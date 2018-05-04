@@ -49,7 +49,7 @@ namespace Sistema_MVC_Aguirre.Controllers
         [HttpPost]
         public ActionResult Guardar(Documento documento)
         {
-            
+            ViewBag.Categoria = categoria.Listar();
             if (ModelState.IsValid)
             {
                 documento.Guardar();

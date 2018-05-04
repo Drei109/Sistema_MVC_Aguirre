@@ -7,14 +7,14 @@
 
 @using (Html.BeginForm("Index", "Galeria", FormMethod.Post, new { criterio = "frm-buscar" }))
 {
-    <div class="">
+    @*<div class="">
         @Html.Label("Buscar: ", new { @class = "h4" })
         @Html.TextBox("Criterio", "", new { @class = "form-control input-lg" })
         <br />
         <button type="submit" class="btn btn-lg btn-primary">BUSCAR</button>
-    </div>
+    </div>*@
     <br />
-    <table class="table table-striped">
+    <table id="datatable" class="table table-striped">
         <thead class="thead-dark h4">
             <tr>
                 <th>ID</th>
