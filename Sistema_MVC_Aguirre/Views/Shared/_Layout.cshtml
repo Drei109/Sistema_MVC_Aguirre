@@ -11,10 +11,18 @@
     <!-- Custom -->
     <link href="~/Assets/css/estilos.css" rel="stylesheet" />
     <!-- DataTable -->
-    <link href="~/Assets/DataTables/datatables.min.css" rel="stylesheet" />
-    
+    <link href="~/Assets/DataTables/datatables.min.css" rel="stylesheet" />    
     <link href="~/Assets/DataTables/css/dataTables.foundation.min.css" rel="stylesheet" />        
+
     <title>@ViewBag.Title</title>
+	<link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.1.221/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.aspnetmvc.min.js"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 </head>
 <body>
     <div>   
@@ -34,6 +42,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item t-h5" href="~/Persona/Index">Persona</a>
                                 <a class="dropdown-item t-h5" href="~/Usuario/Index">Usuario</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item t-h5" href="~/PersonaGrid/Index">Pesona TELERIK</a>
                             </div>
                         </li>                        
                     </ul>

@@ -138,6 +138,5 @@ namespace Sistema_MVC_Aguirre.Models
                 throw;
             }
         }
-
     }
 }

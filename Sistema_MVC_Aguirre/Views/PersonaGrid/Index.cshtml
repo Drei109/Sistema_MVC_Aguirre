@@ -1,0 +1,39 @@
+﻿
+@model IEnumerable<Sistema_MVC_Aguirre.Models.Persona>
+
+@{ 
+    ViewBag.Title = "Persona - CRUD - Telerik";
+}
+
+@(Html.Kendo().Grid(Model)
+      .Name("Grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.dni);
+        columns.Bound(c => c.apellido);
+        columns.Bound(c => c.nombre);
+        columns.Bound(c => c.email);
+        columns.Bound(c => c.celular);
+        columns.Bound(c => c.estado);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.InLine))
+      .Pageable()
+      .Navigatable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+        .Server()
+        .Model(model => model.Id(p => p.persona_id))
+        .Read(read => read.Action("Index", "PersonaGrid"))
+        .Create("Persona_Create", "PersonaGrid")
+        .Update("Persona_Update", "PersonaGrid")
+        .Destroy("Persona_Destroy", "PersonaGrid")
+      )
+)
