@@ -151,5 +151,36 @@ namespace Sistema_MVC_Aguirre.Models
             }
         }
 
+        public ResponseModel ValidarLogin(string usuario, string password)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var db = new Model_Sistema())
+                {
+                    password = HashHelper.MD5(password);
+                    var usu = db.Usuario.Where(x => x.usuario1 == usuario)
+                                            .Where(x => x.clave == password)
+                                            .SingleOrDefault();
+
+                    if (usu != null)
+                    {
+                        SessionHelper.AddUserToSession(usu.usuario_id.ToString());
+                        rm.SetResponse(true);
+                    }
+                    else
+                    {
+                        rm.SetResponse(false, "Usuario o password incorrecto");
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return rm;
+        }
+
     }
 }
