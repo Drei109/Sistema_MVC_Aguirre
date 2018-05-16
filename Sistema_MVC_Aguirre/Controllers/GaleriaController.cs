@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,7 +37,7 @@ namespace Sistema_MVC_Aguirre.Controllers
         public ActionResult Buscar(string criterio)
         {
             return View(
-                    criterio == null || criterio == "" ? galeria.Listar() : galeria.Buscar(criterio)
+                    string.IsNullOrEmpty(criterio) ? galeria.Listar() : galeria.Buscar(criterio)
                 );
         }
 
@@ -50,19 +51,23 @@ namespace Sistema_MVC_Aguirre.Controllers
         }
 
         [HttpPost]
-        public ActionResult Guardar(Galeria galeria)
+        public ActionResult Guardar(Galeria galeria, HttpPostedFileBase imagen)
         {
+            galeria.imagen = "**";
+            galeria.thumbail = "**";
             ViewBag.Categoria2 = categoria.Listar();
-            
-            if (ModelState.IsValid)
+
+            if (imagen != null)
+                galeria.imagen = galeria.GuardarImagen(imagen);
+                galeria.thumbail = "Galeria_" + galeria.galeria_id + "_thumbnail.jpeg";
+
+            if (ModelState.IsValid && !string.IsNullOrEmpty(galeria.imagen))
             {
                 galeria.Guardar();
                 return Redirect("~/Galeria");
             }
-            else
-            {
-                return View("~/Views/Galeria/AgregarEditar.cshtml", galeria);
-            }
+
+            return View("~/Views/Galeria/AgregarEditar.cshtml", galeria);
 
         }
 

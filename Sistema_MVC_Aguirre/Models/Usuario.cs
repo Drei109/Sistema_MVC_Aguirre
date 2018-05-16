@@ -200,16 +200,14 @@ namespace Sistema_MVC_Aguirre.Models
 
                     if (Foto != null)
                     {
-                        string extension = Path.GetDirectoryName(Foto.FileName).ToLower();
-                        int size = 1024 * 1024 * 5;
+                        const int size = 1024 * 1024 * 5;
                         var filtroextension = new[]{".jpg",".jpeg",".png",".gif"};
                         var extensiones = Path.GetExtension(Foto.FileName);
 
                         if (filtroextension.Contains(extensiones) && (Foto.ContentLength <= size))
                         {
-                            string archivo = Path.GetFileName(Foto.FileName);
-                            Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + archivo));
-                            this.avatar = archivo;
+                            avatar = usuario_id + "_avatar" + extensiones;
+                            Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + avatar));
                         }
                         else
                         {
@@ -234,10 +232,7 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 throw;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
             return rm;
         }
     }

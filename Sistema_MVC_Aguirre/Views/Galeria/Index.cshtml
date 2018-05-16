@@ -20,6 +20,7 @@
                 <th>ID</th>
                 <th>NOMBRE</th>
                 <th>DESCRIPCIÓN</th>
+                <th>THUMBNAIL</th>
                 <th>ESTADO</th>
                 <th></th>
             </tr>
@@ -31,6 +32,7 @@
                     <td>@m.galeria_id</td>
                     <td>@m.nombre</td>
                     <td>@m.descripcion</td>
+                    <td><img src="~/Uploads/Galeria/@m.thumbail" alt="@m.thumbail" height="80" /></td>
                     <td>@(m.estado == "A" ? "Activo" : "Inactivo")</td>
                     <td style="align-content:center;">
                         <a href="~/Galeria/Ver/@m.galeria_id" class="btn btn-lg btn-info">DETALLE</a>

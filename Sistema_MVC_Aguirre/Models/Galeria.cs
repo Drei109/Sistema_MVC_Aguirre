@@ -1,3 +1,7 @@
+using System.Drawing;
+using System.IO;
+using System.Web;
+
 namespace Sistema_MVC_Aguirre.Models
 {
     using System;
@@ -23,11 +27,11 @@ namespace Sistema_MVC_Aguirre.Models
         [Column(TypeName = "text")]
         public string descripcion { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(250)]
         public string imagen { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(250)]
         public string thumbail { get; set; }
 
@@ -114,6 +118,27 @@ namespace Sistema_MVC_Aguirre.Models
             {
                 throw;
             }
+        }
+
+        public string GuardarImagen(HttpPostedFileBase imagen)
+        {
+            var nombreImagen = "";
+            const int size = 1024 * 1024 * 5;
+            var filtroextension = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var extensiones = Path.GetExtension(imagen.FileName);
+            
+
+            if (filtroextension.Contains(extensiones) && (imagen.ContentLength <= size))
+            {
+                nombreImagen = "Galeria_" + galeria_id + "_imagen" + extensiones;
+                var nombreThumb = "Galeria_" + galeria_id + "_thumbnail.jpeg";
+                imagen.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Galeria/" + nombreImagen));
+                var image = Image.FromFile(HttpContext.Current.Server.MapPath("~/Uploads/Galeria/" + nombreImagen));
+                var thumb = image.GetThumbnailImage(80, 80, () => false, IntPtr.Zero);
+                thumb.Save(HttpContext.Current.Server.MapPath("~/Uploads/Galeria/" + nombreThumb));
+            }
+
+            return nombreImagen;
         }
 
         public void Eliminar()

@@ -10,11 +10,12 @@
     <li class="active">@((Model.galeria_id) > 0 ? Model.nombre : "Nuevo registro")</li>
 </ol>
 
-@using (Html.BeginForm("Guardar", "Galeria", FormMethod.Post, new { id = "frm-galeria" }))
+@using (Html.BeginForm("Guardar", "Galeria", FormMethod.Post, new { id = "frm-galeria", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.galeria_id)
     <div class="card">
         <div class="card-header"><span class="h4">Información de la galería</span></div>
+        <br/>
         <div class="card-body h4">
             <div class="form-group">
                 @Html.Label("Id")
@@ -46,17 +47,17 @@
                 @Html.ValidationMessageFor(x => x.descripcion, null, new { @class = "label label-danger" })
             </div>  
             
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.Label("Imagen ")
-                @Html.TextBoxFor(x => x.imagen, new { @class = "form-control form-control-lg" })
+                @Html.TextBoxFor(x => x.imagen, new { @class = "form-control form-control-lg", @value = "test"})
                 @Html.ValidationMessageFor(x => x.imagen, null, new { @class = "label label-danger" })
-            </div>  
+            </div>*@  
             
-            <div class="form-group">
-                @Html.Label("Thumpnail ")
+            @*<div class="form-group">
+                @Html.Label("Thumbnail ")
                 @Html.TextBoxFor(x => x.thumbail, new { @class = "form-control form-control-lg" })
                 @Html.ValidationMessageFor(x => x.thumbail, null, new { @class = "label label-danger" })
-            </div> 
+            </div>*@ 
 
             <div class="form-group">
                 @Html.Label("Estado ")
@@ -64,6 +65,20 @@
                 @Html.RadioButtonFor(x => x.estado, "A")<span> Activo</span>
                 @Html.RadioButtonFor(x => x.estado, "I")<span> Inactivo</span>
                 @Html.ValidationMessageFor(x => x.estado, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Foto ")
+                <br />
+                @if (Model.galeria_id > 0)
+                {
+                    <img src="~/Uploads/Galeria/@Model.imagen" alt="@Model.imagen" height="105"/>
+                    <br/>
+                }
+                <div class="custom-file">
+                    <input class="custom-file-input" name="imagen" id="imagen" type="file">
+                    <label class="custom-file-label" for="imagen">Escoja un archivo</label>
+                </div>
             </div>
 
         </div>
