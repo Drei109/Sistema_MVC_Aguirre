@@ -4,16 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Sistema_MVC_Aguirre.Models;
-
+using Sistema_MVC_Aguirre.Filters;
 
 namespace Sistema_MVC_Aguirre.Controllers
 {
+    [Autenticado]
     public class GaleriaController : Controller
     {
         private Galeria galeria = new Galeria();
         private Categoria categoria = new Categoria();
 
-        // GET: Galeria
+        // GET: Galeria        
         public ActionResult Index(string criterio)
         {
             if (criterio == null || criterio == "")

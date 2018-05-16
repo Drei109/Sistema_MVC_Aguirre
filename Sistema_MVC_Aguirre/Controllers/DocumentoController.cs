@@ -4,15 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Sistema_MVC_Aguirre.Models;
+using Sistema_MVC_Aguirre.Filters;
 
 namespace Sistema_MVC_Aguirre.Controllers
 {
+    [Autenticado]
     public class DocumentoController : Controller
     {
         private Documento documento = new Documento();
         private Categoria categoria = new Categoria();
 
-        // GET: Documento
+        // GET: Documento        
         public ActionResult Index(string criterio)
         {
             if (criterio == null || criterio == "")

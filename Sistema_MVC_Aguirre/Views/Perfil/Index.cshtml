@@ -1,0 +1,34 @@
+﻿@model Sistema_MVC_Aguirre.Models.Usuario
+@{ 
+    ViewBag.Title = "Perfil Personal";
+}
+
+<div id="yo" class="page">
+    <h2>Mi perfil Personal</h2>
+    @using (Html.BeginForm("Actualizar","Perfil",FormMethod.Post))
+    {
+        <div>
+            <div class="table-content">
+                <div role="tabpanel" class="active" id="info">
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.usuario_id)
+                        @Html.Label("Usuario")
+                        @Html.TextBoxFor(x => x.usuario1, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(x => x.usuario1,null,new { @class = "label label-danger" })
+                        <img src="~/Uploads/@Model.avatar" alt="@Model.avatar" width="105" height="105" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Foto:</label>
+                        <input type="file" name="foto"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <button data-ajax="true" class="btn btn-primary btn-lg">GUARDAR</button>
+            <a href="~/Default" class="btn btn-danger btn-lg">CANCELAR</a>
+        </div>
+    }
+</div>
