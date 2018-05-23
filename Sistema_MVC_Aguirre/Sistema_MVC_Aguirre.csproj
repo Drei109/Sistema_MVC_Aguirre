@@ -49,6 +49,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Kendo.Mvc, Version=2018.1.221.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -151,8 +155,8 @@
     <Compile Include="Controllers\DocumentoController.cs" />
     <Compile Include="Controllers\GaleriaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-	<Compile Include="Controllers\PerfilController.cs" />
-	<Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filters\AdminFilters.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,7 +200,8 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
-	<None Include="Web.Debug.config">
+    <Content Include="Views\Galeria\BuscarPorCategorias.cshtml" />
+    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">

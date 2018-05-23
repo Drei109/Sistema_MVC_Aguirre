@@ -126,22 +126,44 @@ namespace Sistema_MVC_Aguirre.Models
 
         public void Eliminar()
         {
-            try
+            using (var db = new Model_Sistema())
             {
-                using (var db = new Model_Sistema())
+                if (this.persona_id > 0)
                 {
-                    if (this.persona_id > 0)
-                    {
-                        db.Entry(this).State = EntityState.Deleted;
-                        db.SaveChanges();
-                    }
+                    db.Entry(this).State = EntityState.Deleted;
+                    db.SaveChanges();
                 }
-            }
-            catch (Exception)
-            {
-                throw;
             }
         }
 
+        public ResponseModel GuardarPerfil(Persona persona)
+        {
+            var rm = new ResponseModel();
+            using (var db = new Model_Sistema())
+            {
+                db.Configuration.ValidateOnSaveEnabled = false;
+
+                var per = db.Entry(this);
+
+                per.State = EntityState.Modified;
+
+                if (persona != null)
+                {
+                    if (this.persona_id == 0) per.Property(x => x.persona_id).IsModified = false;
+                    if (this.estado == null) per.Property(x => x.estado).IsModified = false;
+                    if (this.dni == null) per.Property(x => x.dni).IsModified = false;
+                    if (this.apellido == null) per.Property(x => x.apellido).IsModified = false;
+                    if (this.nombre== null) per.Property(x => x.nombre).IsModified = false;
+
+
+                    db.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+
+            }
+
+            return rm;
+        }
     }
 }

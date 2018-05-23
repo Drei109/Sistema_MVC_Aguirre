@@ -195,8 +195,8 @@ namespace Sistema_MVC_Aguirre.Models
                 {
                     db.Configuration.ValidateOnSaveEnabled = false;
 
-                    var Usu = db.Entry(this);
-                    Usu.State = EntityState.Modified;
+                    var usu = db.Entry(this);
+                    usu.State = EntityState.Modified;
 
                     if (Foto != null)
                     {
@@ -211,15 +211,15 @@ namespace Sistema_MVC_Aguirre.Models
                         }
                         else
                         {
-                            Usu.Property(x => x.avatar).IsModified = false; 
+                            usu.Property(x => x.avatar).IsModified = false; 
                         }
 
-                        if (this.usuario_id == 0) Usu.Property(x => x.usuario_id).IsModified = false;
-                        if (this.persona_id == 0) Usu.Property(x => x.persona_id).IsModified = false;
-                        if (this.usuario1 == null) Usu.Property(x => x.usuario1).IsModified = false;
-                        if (this.nivel == null) Usu.Property(x => x.nivel).IsModified = false;
-                        if (this.estado == null) Usu.Property(x => x.estado).IsModified = false;
-                        if (this.clave == null) Usu.Property(x => x.clave).IsModified = false;
+                        if (this.usuario_id == 0) usu.Property(x => x.usuario_id).IsModified = false;
+                        if (this.persona_id == 0) usu.Property(x => x.persona_id).IsModified = false;
+                        if (this.usuario1 == null) usu.Property(x => x.usuario1).IsModified = false;
+                        if (this.nivel == null) usu.Property(x => x.nivel).IsModified = false;
+                        if (this.estado == null) usu.Property(x => x.estado).IsModified = false;
+                        if (this.clave == null) usu.Property(x => x.clave).IsModified = false;
 
                         db.SaveChanges();
                         rm.SetResponse(true);

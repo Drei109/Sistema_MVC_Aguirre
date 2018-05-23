@@ -77,5 +77,27 @@ namespace Sistema_MVC_Aguirre.Controllers
             galeria.Eliminar();
             return Redirect("~/Galeria");
         }
+
+
+        public ActionResult BuscarPorCategorias(string criterio)
+        {
+            ViewBag.Categoria2 = categoria.Listar();
+            if (string.IsNullOrEmpty(criterio))
+            {
+                return View(galeria.Listar());
+
+            }
+            else
+            {
+                return View(galeria.BuscarPorCategoria(criterio));
+            }
+        }
+
+        //public ActionResult TotalPorCategorias()
+        //{
+        //    ViewBag.Categoria2 = categoria.Listar();
+        //    ViewBag.TotalGalerias = galeria.TotalGalerias();
+        //    return View(galeria.Listar());
+        //}
     }
 }

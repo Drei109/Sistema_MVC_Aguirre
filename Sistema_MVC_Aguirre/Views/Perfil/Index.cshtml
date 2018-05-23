@@ -12,8 +12,14 @@
                 <div role="tabpanel" class="active" id="info">
                     <div class="form-group">
                         @Html.HiddenFor(x => x.usuario_id)
+                        @Html.HiddenFor(x => x.persona_id)
+                        @Html.HiddenFor(x => x.Persona.persona_id)
                         @Html.Label("Usuario")
                         @Html.TextBoxFor(x => x.usuario1, new { @class = "form-control"})
+                        @Html.Label("Email")
+                        @Html.TextBoxFor(x => x.Persona.email, new { @class = "form-control" })
+                        @Html.Label("Celular")
+                        @Html.TextBoxFor(x => x.Persona.celular, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.usuario1,null,new { @class = "label label-danger" })
                         <img src="~/Uploads/@Model.avatar" alt="@Model.avatar" width="105" height="105" />
                     </div>

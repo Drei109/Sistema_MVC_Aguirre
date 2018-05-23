@@ -159,5 +159,41 @@ namespace Sistema_MVC_Aguirre.Models
                 throw;
             }
         }
+
+        public List<Galeria> BuscarPorCategoria(string criterio)
+        {
+            var galerias = new List<Galeria>();
+            int id = Convert.ToInt32(criterio);
+            try
+            {
+                using (var db = new Model_Sistema())
+                {
+                    galerias = db.Galeria.Include("Categoria").Where(x => x.categoria_id == id).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return galerias;
+        }
+
+        //public List<int> TotalGalerias()
+        //{
+        //    //var galerias = new List<Galeria>();
+        //    //int id = Convert.ToInt32(criterio);
+        //    //try
+        //    //{
+        //    //    using (var db = new Model_Sistema())
+        //    //    {
+        //    //        galerias = db.Galeria.Include("Categoria").Where(x => x.categoria_id == id).ToList();
+        //    //    }
+        //    //}
+        //    //catch (Exception)
+        //    //{
+        //    //    throw;
+        //    //}
+        //    //return galerias;
+        //}
     }
 }

@@ -1,0 +1,42 @@
+﻿@model List<Sistema_MVC_Aguirre.Models.Galeria>
+@{
+    ViewBag.Title = "GALERÍAS POR CATEGORÍA";
+    List<Sistema_MVC_Aguirre.Models.Categoria> categoria2 = ViewBag.Categoria2;
+}
+
+@using (Html.BeginForm("BuscarPorCategorias", "Galeria", FormMethod.Post, new { criterio = "frm-buscar" }))
+{
+    <select name="criterio" class="custom-select form-control-lg">
+        <option @(Model[0].categoria_id.Equals("") ? "Selected" : "") value="">Seleccione</option>
+        @foreach (var c in categoria2)
+        {
+            <option @(Model[0].categoria_id.Equals(c.categoria_id) ? "Selected" : "") value="@c.categoria_id" class="">@c.nombre</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary btn-lg">BUSCAR</button>
+    <br />
+    <table id="ejemplo2" class="table table-striped table-bordered">
+        <thead class="thead-dark h4">
+        <tr>
+            <th>ID</th>
+            <th>CATEGORÍA</th>
+            <th>NOMBRE</th>
+            <th>THUMBNAIL</th>
+            <th>ESTADO</th>
+        </tr>
+        </thead>
+        <tbody class="h4">
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.galeria_id</td>
+                <td>@m.Categoria.nombre</td>
+                <td>@m.descripcion</td>
+                <td><img src="~/Uploads/Galeria/@m.thumbail" alt="@m.thumbail" height="80" /></td>
+                <td>@(m.estado == "A" ? "Activo" : "Inactivo")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
