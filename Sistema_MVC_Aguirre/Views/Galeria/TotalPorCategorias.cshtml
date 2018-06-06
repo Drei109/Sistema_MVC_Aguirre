@@ -1,0 +1,32 @@
+﻿@using Sistema_MVC_Aguirre.Models
+@{
+    ViewBag.Title = "TOTAL POR CATEGORÍA";
+    Array totalGalerias = ViewBag.TotalGalerias;
+}
+
+@using (Html.BeginForm("TotalPorCategorias", "Galeria", FormMethod.Post, new { criterio = "frm-buscar" }))
+{
+    <br />
+    <table id="ejemplo2" class="table table-striped table-bordered">
+        <thead class="thead-dark h4">
+            <tr>
+                <th>ID</th>
+                <th>CATEGORÍA</th>
+                <th>TOTAL GALERÍAS</th>
+            </tr>
+        </thead>
+        <tbody class="h4">
+            @foreach (Consultas m in totalGalerias)
+            {
+                <tr>
+                    <td>@m.ID</td>
+                    <td>@m.Nombre</td>
+                    <td>@m.Count</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,12 +50,19 @@ namespace Sistema_MVC_Aguirre.Controllers
         }
 
         [HttpPost]
-        public ActionResult Guardar(Documento documento)
+        public ActionResult Guardar(Documento doc, HttpPostedFileBase file)
         {
             ViewBag.Categoria = categoria.Listar();
+            ModelState.Remove("nombre");
+            ModelState.Remove("extension");
+            ModelState.Remove("tamanio");
+
             if (ModelState.IsValid)
             {
-                documento.Guardar();
+                doc.nombre = file.FileName;
+                doc.extension = Path.GetExtension(file.FileName); ;
+                doc.tamanio = file.ContentLength.ToString();
+                doc.Guardar(file);
                 return Redirect("~/Documento");
             }
             else

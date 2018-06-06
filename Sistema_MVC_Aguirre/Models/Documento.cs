@@ -1,3 +1,5 @@
+using System.Web;
+
 namespace Sistema_MVC_Aguirre.Models
 {
     using System;
@@ -97,18 +99,28 @@ namespace Sistema_MVC_Aguirre.Models
             return documentos;
         }
 
-        public void Guardar()
+        public void Guardar(HttpPostedFileBase file)
         {
             try
             {
                 using (var db = new Model_Sistema())
                 {
+                    var doc = db.Entry(this);
+
                     if (this.documento_id > 0)
                     {
+                        if (file != null)
+                        {
+                            file.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extension));
+                        }
                         db.Entry(this).State = EntityState.Modified;
                     }
                     else
                     {
+                        if (file != null)
+                        {
+                            file.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extension));
+                        }
                         db.Entry(this).State = EntityState.Added;
                     }
                     db.SaveChanges();

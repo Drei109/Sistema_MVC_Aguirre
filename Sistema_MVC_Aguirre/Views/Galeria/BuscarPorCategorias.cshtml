@@ -1,17 +1,28 @@
-﻿@model List<Sistema_MVC_Aguirre.Models.Galeria>
+﻿@using Sistema_MVC_Aguirre.Models
+@model List<Sistema_MVC_Aguirre.Models.Galeria>
 @{
     ViewBag.Title = "GALERÍAS POR CATEGORÍA";
+    var gal = new Galeria().Listar();
     List<Sistema_MVC_Aguirre.Models.Categoria> categoria2 = ViewBag.Categoria2;
 }
 
 @using (Html.BeginForm("BuscarPorCategorias", "Galeria", FormMethod.Post, new { criterio = "frm-buscar" }))
 {
     <select name="criterio" class="custom-select form-control-lg">
-        <option @(Model[0].categoria_id.Equals("") ? "Selected" : "") value="">Seleccione</option>
-        @foreach (var c in categoria2)
+        @*@foreach (var g in gal)
         {
-            <option @(Model[0].categoria_id.Equals(c.categoria_id) ? "Selected" : "") value="@c.categoria_id" class="">@c.nombre</option>
+            <option @(g.categoria_id.Equals(g.categoria_id) ? "Selected" : "") value="@g.categoria_id" class="">@g.nombre</option>
+        }*@
+
+        @if (Model.Count != 0)
+        {
+            <option @(Model[0].categoria_id.Equals("") ? "Selected" : "") value="">Seleccione</option>
+            foreach (var c in categoria2)
+            {
+                <option @(Model[0].categoria_id.Equals(c.categoria_id) ? "Selected" : "") value="@c.categoria_id" class="">@c.nombre</option>
+            }
         }
+
     </select>
     <button type="submit" class="btn btn-primary btn-lg">BUSCAR</button>
     <br />

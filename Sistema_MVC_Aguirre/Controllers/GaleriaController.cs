@@ -14,6 +14,7 @@ namespace Sistema_MVC_Aguirre.Controllers
     {
         private Galeria galeria = new Galeria();
         private Categoria categoria = new Categoria();
+        private Consultas consulta = new Consultas();
 
         // GET: Galeria        
         public ActionResult Index(string criterio)
@@ -93,11 +94,11 @@ namespace Sistema_MVC_Aguirre.Controllers
             }
         }
 
-        //public ActionResult TotalPorCategorias()
-        //{
-        //    ViewBag.Categoria2 = categoria.Listar();
-        //    ViewBag.TotalGalerias = galeria.TotalGalerias();
-        //    return View(galeria.Listar());
-        //}
+        public ActionResult TotalPorCategorias()
+        {
+            ViewBag.Categoria2 = categoria.Listar();
+            ViewBag.TotalGalerias = consulta.TotalGalerias();
+            return View(galeria.Listar());
+        }
     }
 }
