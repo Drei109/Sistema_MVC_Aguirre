@@ -109,21 +109,17 @@ namespace Sistema_MVC_Aguirre.Models
 
                     if (this.documento_id > 0)
                     {
-                        if (file != null)
-                        {
-                            file.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extension));
-                        }
                         db.Entry(this).State = EntityState.Modified;
                     }
                     else
                     {
-                        if (file != null)
-                        {
-                            file.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extension));
-                        }
                         db.Entry(this).State = EntityState.Added;
                     }
+
                     db.SaveChanges();
+
+                    file.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extension));
+
                 }
             }
             catch (Exception)
