@@ -50,19 +50,48 @@ namespace Sistema_MVC_Aguirre.Controllers
         }
 
         [HttpPost]
-        public ActionResult Guardar(Documento doc, HttpPostedFileBase file)
+        public ActionResult Guardar(Documento doc, HttpPostedFileBase file, string extension)
         {
             ViewBag.Categoria = categoria.Listar();
             ModelState.Remove("nombre");
             ModelState.Remove("extension");
             ModelState.Remove("tamanio");
+            ModelState.Remove("descripcion");
+            ModelState.Remove("tipo");
 
             if (ModelState.IsValid)
             {
-                doc.nombre = file.FileName;
-                doc.extension = Path.GetExtension(file.FileName); ;
+                doc.nombre = Path.GetFileNameWithoutExtension(file.FileName);
+                doc.descripcion = file.FileName;
+                doc.extension = Path.GetExtension(file.FileName);
                 doc.tamanio = file.ContentLength.ToString();
-                doc.Guardar(file);
+
+                switch (doc.extension)
+                {
+                    case ".ppt":
+                    case ".pptx":
+                        doc.tipo = "Presentación";
+                        break;
+                    case ".doc":
+                    case ".docx":
+                        doc.tipo = "Documento";
+                        break;
+                    case ".xls":
+                    case ".xlsx":
+                        doc.tipo = "Cálculo";
+                        break;
+                    case ".jpg":
+                    case ".jpeg":
+                    case ".png":
+                    case ".gif":
+                        doc.tipo = "Imagen";
+                        break;
+                    default:
+                        doc.tipo = "Otro";
+                        break;
+                }
+
+                doc.Guardar(file, extension);
                 return Redirect("~/Documento");
             }
             else

@@ -138,6 +138,11 @@
     <Content Include="Assets\DataTables\js\jquery.dataTables.js" />
     <Content Include="Assets\DataTables\js\jquery.dataTables.min.js" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\images\excel.png" />
+    <Content Include="Assets\images\jpeg.png" />
+    <Content Include="Assets\images\otros.png" />
+    <Content Include="Assets\images\powerpoint.png" />
+    <Content Include="Assets\images\word.png" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\ini.js" />

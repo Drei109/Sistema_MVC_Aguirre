@@ -1,3 +1,4 @@
+using System.IO;
 using System.Web;
 
 namespace Sistema_MVC_Aguirre.Models
@@ -26,7 +27,7 @@ namespace Sistema_MVC_Aguirre.Models
         public string descripcion { get; set; }
 
         [Required]
-        [StringLength(4)]
+        [StringLength(10)]
         public string extension { get; set; }
 
         [Required]
@@ -99,7 +100,7 @@ namespace Sistema_MVC_Aguirre.Models
             return documentos;
         }
 
-        public void Guardar(HttpPostedFileBase file)
+        public void Guardar(HttpPostedFileBase file, string extensionAntigua)
         {
             try
             {
@@ -118,6 +119,11 @@ namespace Sistema_MVC_Aguirre.Models
 
                     db.SaveChanges();
 
+                    if (File.Exists(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extensionAntigua)))
+                    {
+                        File.Delete(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extensionAntigua));
+                    }
+
                     file.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + extension));
 
                 }
@@ -132,14 +138,17 @@ namespace Sistema_MVC_Aguirre.Models
         {
             try
             {
-                using (var db = new Model_Sistema())
+                var _context = new Model_Sistema();
+                var doc = _context.Documento.Find(documento_id);
+
+                if (File.Exists(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + doc.extension)))
                 {
-                    if (this.documento_id > 0)
-                    {
-                        db.Entry(this).State = EntityState.Deleted;
-                        db.SaveChanges();
-                    }
+                    File.Delete(HttpContext.Current.Server.MapPath("~/Uploads/Documents/" + documento_id + doc.extension));
                 }
+
+                _context.Documento.Remove(doc);
+
+                _context.SaveChanges();
             }
             catch (Exception)
             {

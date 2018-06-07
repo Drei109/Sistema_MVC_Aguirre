@@ -20,7 +20,7 @@
                 <th>ID</th>
                 <th>NOMBRE</th>
                 <th>CATEGORÍA</th>
-                <th>DESCRIPCIÓN</th>
+                @*<th>DESCRIPCIÓN</th>*@
                 <th>EXTENSION</th>
                 <th>TAMAÑO</th>
                 <th>TIPO</th>
@@ -35,10 +35,31 @@
                     <td>@m.documento_id</td>
                     <td>@m.nombre</td>
                     <td>@m.Categoria.nombre</td>
-                    <td>@m.descripcion</td>
+                    @*<td>@m.descripcion</td>*@
                     <td>@m.extension</td>
                     <td>@m.tamanio</td>
-                    <td>@m.tipo</td>
+                    <td>
+                        <a href="~/Uploads/Documents/@(m.documento_id + m.extension)">
+                            @switch (m.tipo)
+                            {
+                                case "Presentación":
+                                    <img height="50" src="~/Assets/images/powerpoint.png" alt="@m.tipo" />
+                                    break;
+                                case "Documento":
+                                    <img height="50" src="~/Assets/images/word.png" alt="@m.tipo" />
+                                    break;
+                                case "Cálculo":
+                                    <img height="50" src="~/Assets/images/excel.png" alt="@m.tipo" />
+                                    break;
+                                case "Imagen":
+                                    <img height="50" src="~/Assets/images/jpeg.png" alt="@m.tipo" />
+                                    break;
+                                default:
+                                    <img height="50" src="~/Assets/images/otros.png" alt="@m.tipo" />
+                                    break;
+                            }
+                        </a>
+                    </td>
                     <td>@(m.estado == "A" ? "Activo" : "Inactivo")</td>
                     <td style="align-content:center;">
                         <a href="~/Documento/Ver/@m.documento_id" class="btn btn-lg btn-info">DETALLE</a>
